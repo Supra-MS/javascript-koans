@@ -160,9 +160,27 @@ describe("About Applying What We Have Learnt", function() {
 
   it("should find the smallest number divisible by each of the numbers 1 to 20",
   function () {
+    var smallestDivisibleNumber = function (num) {
+      var factors = [];
+      // loop thru 1 - 20 //
+      for (var i = 1; i <= num; i++) {
+        var j = i;
+        factors.forEach(function (val) {
+          // Get the L.C.M of each number
+          if (j % val === 0) {
+            j /= val;
+          }
+        });
+        factors.push(j);
+      }
+      // mulitply each number.
+      var mulitply = factors.reduce(function (acc, val) {
+        return acc *= val;
+      }, 1);
+      return mulitply;
+    };
 
-
-
+    expect(smallestDivisibleNumber(20)).toBe(232792560);
   });
 
   /*********************************************************************************/
